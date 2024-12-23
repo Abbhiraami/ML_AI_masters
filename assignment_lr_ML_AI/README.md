@@ -14,3 +14,5 @@ Train/ test/ eval split
 Model Building
 Model Evaluation
 Interpretation - Business Translation
+
+Subjective Questions
