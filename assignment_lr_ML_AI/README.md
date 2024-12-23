@@ -15,6 +15,8 @@ Model Building
 Model Evaluation
 Interpretation - Business Translation
 
-Solution notebook: https://github.com/Abbhiraami/ML_AI_masters/blob/main/assignment_lr_ML_AI/bike_demand_model.ipynb
+1. Iput data: https://github.com/Abbhiraami/ML_AI_masters/blob/main/assignment_lr_ML_AI/day.csv
 
-Subjective Questions: https://github.com/Abbhiraami/ML_AI_masters/blob/main/assignment_lr_ML_AI/Regression%2BSubjective%2BQuestions_abbhiraami_s.pdf
+2. Solution notebook: https://github.com/Abbhiraami/ML_AI_masters/blob/main/assignment_lr_ML_AI/bike_demand_model.ipynb
+
+3. Subjective Questions: https://github.com/Abbhiraami/ML_AI_masters/blob/main/assignment_lr_ML_AI/Regression%2BSubjective%2BQuestions_abbhiraami_s.pdf
