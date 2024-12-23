@@ -15,4 +15,4 @@ Model Building
 Model Evaluation
 Interpretation - Business Translation
 
-Subjective Questions
+Subjective Questions: https://github.com/Abbhiraami/ML_AI_masters/blob/main/assignment_lr_ML_AI/Regression%2BSubjective%2BQuestions_abbhiraami_s.pdf
