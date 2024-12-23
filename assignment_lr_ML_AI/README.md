@@ -7,13 +7,15 @@ You are required to model the demand for shared bikes with the available indepen
 
 Predicting the demand for sharing bikes company to increase the revenue of the company:
 
-Exploratory Data Analysis (EDA)
-Correlation, linearity assumptions and multicollinearity checks
-Feature selection
-Train/ test/ eval split
-Model Building
-Model Evaluation
-Interpretation - Business Translation
+* Exploratory Data Analysis (EDA)
+* Correlation, linearity assumptions and multicollinearity checks
+* Feature selection
+* Train/ test/ eval split
+* Model Building
+* Model Evaluation
+* Interpretation - Business Translation
+
+Important links:
 
 1. Iput data: https://github.com/Abbhiraami/ML_AI_masters/blob/main/assignment_lr_ML_AI/day.csv
 
