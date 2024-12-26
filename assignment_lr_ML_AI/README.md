@@ -17,7 +17,7 @@ Predicting the demand for sharing bikes company to increase the revenue of the c
 
 Important links:
 
-1. Iput data: https://github.com/Abbhiraami/ML_AI_masters/blob/main/assignment_lr_ML_AI/day.csv
+1. Input data: https://github.com/Abbhiraami/ML_AI_masters/blob/main/assignment_lr_ML_AI/day.csv
 
 2. Solution notebook: https://github.com/Abbhiraami/ML_AI_masters/blob/main/assignment_lr_ML_AI/bike_demand_model.ipynb
 
