@@ -109,7 +109,7 @@ def scaled_input(X_train,X_test,Y_train,Y_test):
   return X_train_scaled,X_test_scaled,Y_train_scaled,Y_test_scaled,scalar_x,scalar_y
 
 # Data pre_precessing for model fitting
-def data_preprocessing(data=None,split_ratio=None,window_size=None,window_stride=None,company_name=None,feats=["Close"],target_columns=None):
+def data_preprocessing(data=None,split_ratio=None,window_size=None,window_stride=None,company_name=None,feats=None,target_columns=None):
   """
   data: merged dataframe
   split_ratio: ratio of train test split
@@ -216,8 +216,8 @@ def model_fit(X_train=None,X_test=None,Y_train=None,Y_test=None,func=None,config
     # y_preds_dict[config['name']]=y_pred_
 
     ### Metrics dictionary
-    y_train=Y_train.reshape(-1,1)
-    y_test=Y_test.reshape(-1,1)
+    y_train=Y_train.reshape(-1,Y_train.shape[1])
+    y_test=Y_test.reshape(-1,Y_train.shape[1])
     y_preds_list[config['name']]={"y_pred_train":[y_pred_train],"y_pred_test":[y_pred_test]}
     ### MSE train
     mse_train=mean_squared_error(y_train,y_pred_train)
@@ -237,3 +237,50 @@ def model_fit(X_train=None,X_test=None,Y_train=None,Y_test=None,func=None,config
     else:
       pass
   return history_list,metrics_list,model_dict
+
+### Get the best config
+def get_best_config(metrics_dict,config_df):
+  """
+  Input: metrics dictionary from trained models and configuration list
+  Output: best configuration name and best configuration
+  """
+  metrics_df=pd.DataFrame(metrics_dict).T.rename(columns={0:"MSE_train",1:"MSE_test",2:"MAE_train",3:"MAE_test",4:"R2_train",5:"R2_test"}).sort_values('R2_test',ascending=False).reset_index()
+  display(metrics_df.head())
+  best_fit=metrics_df.iloc[0]
+  print(f'best_config:\n')
+  best_config=config_df[config_df["name"]==best_fit["index"]]
+  return best_fit["index"],best_config
+
+### Retrain the model with the best config
+def retrain_model_with_best_config(X_train,X_test,Y_train,Y_test,func1=None,func2=None,
+                                   best_fit_name=None,best_config=None,config_df=None,batch_size=None,epoch=None,y_scalar=None):
+  ### picking only the best config
+ 
+  best_config = config_df[config_df["name"]==best_fit_name].to_dict('records')
+
+  hist,metrics,model=func1(X_train=X_train,X_test=X_test,Y_train=Y_train,Y_test=Y_test,
+                                                          func=func2,configurations=best_config,
+                                                          batch_size=batch_size,epoch=epoch)
+
+  ### Evaluate the model
+  train_val=model[best_fit_name].evaluate(X_train,Y_train)
+  test_val=model[best_fit_name].evaluate(X_test,Y_test)
+  print(f"Train Loss:{train_val}\nTest Loss:{test_val}")
+  
+  ### Predict on test and train data
+  y_pred_test = model[best_fit_name].predict(X_test)
+  y_pred_train = model[best_fit_name].predict(X_train)
+
+  ### R-squared values
+  print(f"Rsquared-score for test:{100*r2_score(Y_test,y_pred_test):.2f}%")
+  print(f"Rsquared-score for train:{100*r2_score(Y_train,y_pred_train):.2f}%")
+
+
+  ### Inverse the scaling 
+  y_pred_test_inv=y_scalar.inverse_transform(y_pred_test)
+  y_test_inv=y_scalar.inverse_transform(Y_test)
+  y_pred_train_inv=y_scalar.inverse_transform(y_pred_train)
+  y_train_inv=y_scalar.inverse_transform(Y_train)
+
+  return y_pred_test_inv,y_test_inv, y_pred_train_inv,y_train_inv
+  
