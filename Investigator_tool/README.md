@@ -37,7 +37,7 @@ It uses **OpenAI GPT-3.5** to analyze transaction patterns, detect potential **m
 ## Instructions to run
 
 - To use this model, use GPT-3.5-Turbo openai API key
-- Download required packages - json. openai==0.2, streamlit, pandas 
+- Download required packages - json, openai==0.2, streamlit, pandas 
 - To get the app running - On the terminal streamlit run <folder_path>/openai_helper.py
 
 
