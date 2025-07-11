@@ -30,5 +30,14 @@ It uses **OpenAI GPT-3.5** to analyze transaction patterns, detect potential **m
 
 ---
 
-## 🏗️ Folder Structure
+## 🏗️ Final interface with results
+
+<img width="1919" height="990" alt="image" src="https://github.com/user-attachments/assets/163e5cf4-eefe-4979-ad60-71c7c850a01e" />
+
+## Instructions to run
+
+- To use this model, use GPT-3.5-Turbo openai API key
+- Download required packages - json. openai==0.2, streamlit, pandas 
+- To get the app running - On the terminal streamlit run <folder_path>/openai_helper.py
+
 
